@@ -1,16 +1,22 @@
 
 require("dotenv").config();
-
+const passport = require("passport");
 const express = require("express");
 
 const { connection } = require("./db");
 const User = require("./models/user");
 const errorRouter = require("./routes/error");
 const userRouter = require("./routes/user");
+const { registerStrategy, verifyStrategy, loginStrategy } = require("./auth");
 
 const app = express();
 
 app.use(express.json());
+
+passport.use("register", registerStrategy);
+passport.use("login", loginStrategy);
+passport.use(verifyStrategy);
+
 
 app.use("/user", userRouter);
 app.use("*", errorRouter); // Use error router here

@@ -8,6 +8,6 @@ module.exports.connection = new Sequelize(
     {
         host: process.env.SQL_DB_HOST,
         dialect: process.env.SQL_DB_DIALECT,
-        //logging: false
+        // logging: false
     }
 );
